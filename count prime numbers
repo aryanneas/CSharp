@@ -1,0 +1,53 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Primos
+{
+    class Program
+    {
+        public static bool isPrimo(int x)
+        {
+            if (x == 1) return true;
+
+            int divisores = 0, i = 1;
+            
+            while (divisores < 3 && i <= x)
+            {
+                if (x % i == 0) divisores++;
+                i++;
+            }
+
+            if (divisores == 2) return true;
+            else return false;
+        }
+
+        static void Main(string[] args)
+        {
+            for (int j = 0; j < 5; j++)
+            {
+                
+                DateTime inicio = DateTime.Now;
+                Console.WriteLine("Tempo inicial: " + inicio);
+
+                int primos = 0;
+
+                for (int i = 1; i < 300000; i++)
+                {
+                    if (isPrimo(i)) primos++;
+                }
+
+                DateTime final = DateTime.Now;
+                Console.WriteLine("Tempo final: " + final);
+                Console.WriteLine("Tempo de execução: " + (final - inicio));
+
+                Console.WriteLine("Quantidade de números primos: " + primos);
+                Console.WriteLine();
+            }
+            
+            Console.ReadKey();
+        }
+    }
+}
