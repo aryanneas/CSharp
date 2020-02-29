@@ -1,0 +1,38 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            DateTime inicio, fim; 
+            int n = 1000;
+            int[] numeros = new int[100000];
+
+            inicio = DateTime.Now;
+
+            for (int j = 0; j < 100000; j++)
+            {
+                 for (int i = 0; i < numeros.Length; i++)
+                {
+                    numeros[i] = 10+n;
+                    n += 1000;
+                
+                }
+            }
+           
+            fim = DateTime.Now;
+
+            Console.WriteLine("Inicio em....: " + inicio);
+            Console.WriteLine("Fim em.......: " + fim);
+            Console.WriteLine("Tempo Total..: " + (fim - inicio) + "ms.");
+
+            Console.ReadKey();
+        }
+    }
+}
