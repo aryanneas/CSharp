@@ -1,0 +1,69 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ConsoleApplication2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            FileStream infile;
+            char x;
+            int tam, klinha =1;
+            String aux;
+
+            infile = new System.IO.FileStream("teste.txt",
+                                               System.IO.FileMode.Open,
+                                               System.IO.FileAccess.Read);
+
+            tam = (int)infile.Length;
+            for (int i = 0; i < tam; ++i)
+            {
+                aux = "";                
+                x = (char)infile.ReadByte();
+
+                if (x == '+' || x == '-')
+                {
+                    aux = aux + x;
+                    x = (char)infile.ReadByte();
+                }
+                
+                if (char.IsDigit(x))
+                {
+                    while (char.IsDigit(x))
+                    {
+                        aux = aux + x;
+                        x = (char)infile.ReadByte();
+                        ++i;
+                    }
+                    Console.WriteLine("Linha " + klinha + " (Numero): " + aux);
+                }
+                
+  
+                if (char.IsLetter(x))
+                {
+                    while (char.IsLetter(x))
+                    {
+                        aux = aux + x;
+                        x = (char)infile.ReadByte();
+                        ++i;
+                    }
+                    Console.WriteLine("Linha " + klinha + " (palavra): " + aux);
+                }
+
+                if (x == 13)
+                {
+                    ++klinha;
+                }
+
+            }
+            infile.Close();
+            Console.ReadKey();
+        }
+    }
+}
